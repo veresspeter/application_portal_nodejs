@@ -1,0 +1,35 @@
+req type      route                      page / site function     all / user / only admin
+
+GET           /                           ->news                  all
+
+GET           /news                       Kezdőoldal (hírek)      all
+GET + POST    /news/add                   Hír hozzáadása          admin
+POST          /news/del/:id                   törlése             admin
+POST          /news/mod/:id                   módosítása          admin
+
+GET           /apps                       Pályázatok              all
+GET + POST    /apps/add                       hozzáadása          admin
+POST          /apps/del/:id                   törlés              admin
+GET + POST    /apps/mod/:id                   módosítás           admin
+POST          /user/:id/apps/mod/:id          pályázat feltöltés  user
+POST          /user/:id/apps/del/:id          pályázat visszavon  user
+
+GET           /apps/all                   Bírálás                 admin
+GET           /apps/app/:id               Pályázat megnyitása     admin
+POST          /apps/app/:id/mod/:score      eredmény módosítás    admin
+POST          /apps/app/:id/del/            eredmény törlés       admin
+
+GET           /judg                       Bírák                   all
+GET           /judg/admin                   admin                 admin
+POST          /judg/admin/add/:id           kinevezés             admin
+POST          /judg/admin/del/:id           lefokozás             admin
+
+GET           /user/:id                   Felhasználó adatai      user
+GET + POST    /user/:id/mod                   adatok módosítása   user
+GET + POST    /user/:id/mod/psw               jelszó módosítása   user
+GET           /user/:id/apps                  pályázatai          user
+POST          /login                          bejelentkeztetése   all
+POST          /logout                         kijelentkeztetése   user
+
+GET + POST    /user/reg                       regisztráció        all
+GET + POST    /user/forget                Jelszóemlékeztető       all
