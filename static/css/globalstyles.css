@@ -1,0 +1,206 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    height: 50px;
+    color: white;
+}
+
+.dropdown-menu{
+    margin-left: -100px;
+}
+
+.dropdown-item a{
+    color: darkgray;
+    width: 100%;
+}
+
+.dropdown-item a:hover{
+    color: dimgray;
+    text-decoration: none;
+}
+
+.container-full {
+    width: 100%;
+    height: 100%;
+    margin: -50px 0 0 0;
+    padding: 50px 0 0 0;
+}
+
+.row {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-full .col-2{
+    padding-left: 0;
+}
+
+.bd-sidebar {
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5DC;
+    padding: 20px 0 0 20px;
+    border-right: 1px solid #ddd;
+}
+
+.nav-item a{
+    color: darkgray;
+    padding-top: 20px;
+    padding-bottom: 0;
+}
+
+.nav-item a:hover{
+    color: dimgray;
+}
+
+.nav-item .active, .nav-item .active:hover{
+    font-weight: bold;
+    color: #1d2124;
+}
+
+.bd-sidebar .subitem{
+    padding-left: 20px;
+}
+
+.bd-sidebar .subitem a{
+    padding-top: 0;
+}
+
+.content{
+    padding: 25px 25px 25px 25px;
+    overflow-y: scroll;
+}
+
+.news{
+    background-color: #f7f7f9;
+    padding: 20px 20px 5px 20px;
+    margin-bottom: 25px;
+}
+
+.news-header{
+    width: 100%;
+}
+
+.news-header .date{
+    float: right;
+    font-size: medium;
+}
+
+.news-body{
+    float: none;
+    padding-top: 20px;
+    text-align: justify;
+}
+
+.news-footer{
+    padding-bottom: 35px;
+}
+
+.news-footer a {
+    float: right;
+    padding: 0 20px 20px 20px;
+}
+
+
+.form-container{
+    background-color: #f7f7f9;
+    margin: 0 auto;
+    padding-bottom: 25px ;
+}
+
+.form-container .name{
+    text-align: center;
+}
+
+.title{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+.table-center{
+    text-align: center;
+}
+
+.form-group label{
+    float: none;
+}
+
+.form-group input{
+    float: right;
+    text-align: center;
+}
+
+.form-group textarea{
+    float: none;
+    width: 100%;
+    margin: 0;
+}
+
+.form-check{
+    padding: 20px 20px 20px 20px;
+}
+
+.applications a{
+    text-decoration: none;
+}
+
+.card-header h5{
+    margin-bottom: 0;
+}
+
+.card-header .card-title{
+    float: left;
+    text-align: left;
+    width: 60%;
+}
+
+.card-header .edit{
+    text-align: right;
+    width: 40%;
+    font-size: medium;
+}
+
+.card-header .card-link{
+    color: darkgray;
+}
+
+.card-header .card-link:hover{
+    color: dimgray;
+}
+
+.card-body p{
+    text-align: justify;
+}
+
+.card-body-footer .right-side{
+    float: right;
+    padding-top: 0;
+    width: 50%;
+    text-align: right;
+}
+
+.card-body-footer a{
+    float: right;
+    text-align: center;
+    color: darkgray;
+    padding-top: 0;
+    margin-top: -5px;
+}
+
+.card-body-footer a:hover{
+    color: dimgray;
+}
+
+.card-body-footer .upload{
+    width: 30%;
+}
+
+.card-body-footer .download{
+    width: 70%;
+    text-align: right;
+}

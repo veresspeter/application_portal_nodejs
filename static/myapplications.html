@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pályázati portál</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/globalstyles.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar navbar-dark bg-primary">
+    <h4>Pályázati portál</h4>
+    <div class="dropdown">
+        <button class="btn btn-outline-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Vezeték Keresztnév
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="dropdown-item disabled form-inline">
+                <a href="myprofile.html"><h6>Adataim</h6></a>
+                <p></p>
+                <a href="myapplications.html"><h6>Pályázataim</h6></a>
+                <p></p>
+                <a href="newpassword.html"><h6>Jelszó módosítás</h6></a>
+                <p></p>
+                <a href="index.html"><h6>Kijelentkezés</h6></a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container-full">
+    <div class="row">
+        <div class="col-2">
+            <nav class="bd-sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Hírek</a>
+                    </li>
+                    <li class="nav-item subitem">
+                        <a class="nav-link" href="addnews.html">Publikálás</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="applications.html">Pályázatok</a>
+                    </li>
+                    <li class="nav-item subitem">
+                        <a class="nav-link" href="addapplication.html">Kiírás</a>
+                    </li>
+                    <li class="nav-item subitem">
+                        <a class="nav-link" href="allapplication.html">Bírálás</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="judges.html">Bírák</a>
+                    </li>
+                    <li class="nav-item subitem">
+                        <a class="nav-link" href="admin.html">Jogkörök</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-10 content">
+            <h4 class="title">Leadott pályázataim</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Pályázat neve</th>
+                    <th>Beküldött dokumentum</th>
+                    <th>Határidő</th>
+                    <th>Eredmény</th>
+                    <th>Lehetőségek</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Pályázatnév</td>
+                    <td><a href="" >application_surename_givenname.pdf</a></td>
+                    <td>2016.06.29</td>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning">Módosít</button>
+                        <button type="button" class="btn btn-outline-danger">Töröl</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pályázatnév</td>
+                    <td><a href="" >application_surename_givenname.pdf</a></td>
+                    <td>2016.04.29</td>
+                    <td>20</td>
+                    <td>
+                    </td>
+                <tr>
+                    <td>Pályázatnév</td>
+                    <td><a href="" >application_surename_givenname.pdf</a></td>
+                    <td>2016.04.29</td>
+                    <td>20</td>
+                    <td>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
