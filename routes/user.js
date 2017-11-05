@@ -1,21 +1,28 @@
+/**
+ * Require all the middlewares
+ */
+var authMW = require('../middlewares/general/auth');
+var renderMW = require('../middlewares/general/render');
+
+var updateAppMW = require('../middlewares/users/apps/updateapp');
+var deleteAppMW = require('../middlewares/users/apps/deleteapp');
+var getAppListMW = require('../middlewares/users/apps/getapplist');
+
+var updateDataMW = require('../middlewares/users/data/updatedata');
+
+var loginMW = require('../middlewares/users/general/login');
+var logoutMW = require('../middlewares/users/general/logout');
+var updatePWMW = require('../middlewares/users/data/updatepw');
+
+var getUserbyEmailMW = require('../middlewares/users/data/getuserbyemail');
+var sendEmailMW = require('../middlewares/users/general/sendemail');
+var createPWMW = require('../middlewares/users/data/createpw');
+
 module.exports = function (app) {
 
-    var authMW = require('../middlewares/general/auth');
-    var renderMW = require('../middlewares/general/render');
+    var objectRepository = {
 
-    var updateAppMW = require('../middlewares/users/apps/updateapp');
-    var deleteAppMW = require('../middlewares/users/apps/deleteapp');
-    var getAppListMW = require('../middlewares/users/apps/getapplist');
-
-    var updateDataMW = require('../middlewares/users/data/updatedata');
-
-    var loginMW = require('../middlewares/users/general/login');
-    var logoutMW = require('../middlewares/users/general/logout');
-    var updatePWMW = require('../middlewares/users/data/updatepw');
-
-    var getUserbyEmailMW = require('../middlewares/users/data/getuserbyemail');
-    var sendEmailMW = require('../middlewares/users/general/sendemail');
-    var createPWMW = require('../middlewares/users/data/createpw');
+    };
 
     /**
      * The registration page
@@ -24,9 +31,9 @@ module.exports = function (app) {
      *              -> than redirects, to the user's page (/user/:id')
      */
     app.use('/user/reg',
-        authMW(),
-        updateDataMW(),
-        renderMW()
+        authMW(objectRepository),
+        updateDataMW(objectRepository),
+        renderMW(objectRepository,'reg')
     );
 
     /**
@@ -35,12 +42,12 @@ module.exports = function (app) {
      *      POST:   Sends the email than refreshes the page
      */
     app.use('/user/forg',
-        authMW(),
-        getUserbyEmailMW(),
-        createPWMW(),
-        updateDataMW()
-        sendEmailMW(),
-        renderMW()
+        authMW(objectRepository),
+        getUserbyEmailMW(objectRepository),
+        createPWMW(objectRepository),
+        updateDataMW(objectRepository),
+        sendEmailMW(objectRepository),
+        renderMW(objectRepository,'fpsw')
     );
 
     /**
@@ -48,8 +55,8 @@ module.exports = function (app) {
      *      -> than redirects to the user's app page (/user/:id/apps)
      */
     app.use('/user/:id/apps/mod/:id',
-        authMW(),
-        updateAppMW()
+        authMW(objectRepository),
+        updateAppMW(objectRepository)
     );
 
     /**
@@ -57,17 +64,17 @@ module.exports = function (app) {
      *      -> than redirects to the user's app page (/user/:id/apps)
      */
     app.use('/user/:id/apps/del/:id',
-        authMW(),
-        deleteAppMW()
+        authMW(objectRepository),
+        deleteAppMW(objectRepository)
     );
 
     /**
      * The page of the applications that the user uploaded
      */
     app.use('/user/:id/apps',
-        authMW(),
-        getAppListMW(),
-        renderMW()
+        authMW(objectRepository),
+        getAppListMW(objectRepository),
+        renderMW(objectRepository,'myapps')
     );
 
     /**
@@ -77,10 +84,10 @@ module.exports = function (app) {
      *                  ->than redirects to the same page (/user/:id)
      */
     app.use('/user/:id/mod/psw',
-        authMW(),
-        loginMW(),
-        updatePWMW(),
-        renderMW()
+        authMW(objectRepository),
+        loginMW(objectRepository),
+        updatePWMW(objectRepository),
+        renderMW(objectRepository,'cpwd')
     );
 
     /**
@@ -90,17 +97,17 @@ module.exports = function (app) {
      *                  ->than redirects to the same page (/user/:id)
      */
     app.use('/user/:id/mod',
-        authMW(),
-        updateDataMW(),
-        renderMW()
+        authMW(objectRepository),
+        updateDataMW(objectRepository),
+        renderMW(objectRepository,'modprofile')
     );
 
     /**
      * The data page of the user
      */
     app.use('/user/:id',
-        authMW(),
-        renderMW()
+        authMW(objectRepository),
+        renderMW(objectRepository,'profile')
     );
 
     /**
@@ -108,8 +115,8 @@ module.exports = function (app) {
      *      -> than redirects to the same page
      */
     app.use('/login',
-        authMW(),
-        loginMW()
+        authMW(objectRepository),
+        loginMW(objectRepository)
     );
 
     /**
@@ -117,8 +124,8 @@ module.exports = function (app) {
      *      -> than redirects to the root page (/)s
      */
     app.use('/logout',
-        authMW(),
-        logoutMW()
+        authMW(objectRepository),
+        logoutMW(objectRepository)
     );
 
 };

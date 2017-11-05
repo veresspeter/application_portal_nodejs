@@ -1,17 +1,25 @@
+/**
+ * Require all the middlewares
+ */
+
+var authMW = require('../middlewares/general/auth');
+var renderMW = require('../middlewares/general/render');
+
+var getAppMW = require('../middlewares/apps/general/getapp');
+var getAppListMW = require('../middlewares/apps/general/getapplist');
+var getActiveAppListMW = require('../middlewares/apps/general/getactiveapplist');
+
+var updateAppMW = require('../middlewares/apps/general/updateapp');
+var deleteAppMW = require('../middlewares/apps/general/deleteapp');
+
+var updateScoreMW = require('../middlewares/apps/scores/updatescore');
+var deleteScoreMW = require('../middlewares/apps/scores/deletescore');
+
 module.exports = function (app) {
 
-    var authMW = require('../middlewares/general/auth');
-    var renderMW = require('../middlewares/general/render');
+    var objectRepository = {
 
-    var getAppMW = require('../middlewares/apps/general/getapp');
-    var getAppListMW = require('../middlewares/apps/general/getapplist');
-    var getActiveAppListMW = require('../middlewares/apps/general/getactiveapplist');
-
-    var updateAppMW = require('../middlewares/apps/general/updateapp');
-    var deleteAppMW = require('../middlewares/apps/general/deleteapp');
-
-    var updateScoreMW = require('../middlewares/apps/scores/updatescore');
-    var deleteScoreMW = require('../middlewares/apps/scores/deletescore');
+    };
 
     /**
      * The creation of a new application
@@ -20,9 +28,9 @@ module.exports = function (app) {
      *          -> redirects to apps (/apps)
      */
     app.use('/apps/add',
-        authMW(),
-        updateAppMW(),
-        renderMW()
+        authMW(objectRepository),
+        updateAppMW(objectRepository),
+        renderMW(objectRepository, 'addapp')
     );
 
     /**
@@ -30,8 +38,8 @@ module.exports = function (app) {
      *          -> redirects to apps (/apps)
      */
     app.use('/apps/del/:id',
-        authMW(),
-        deleteAppMW()
+        authMW(objectRepository),
+        deleteAppMW(objectRepository)
     );
 
     /**
@@ -41,9 +49,9 @@ module.exports = function (app) {
      *          -> redirects to apps (/apps)
      */
     app.use('/apps/mod/:id',
-        authMW(),
-        updateAppMW(),
-        renderMW()
+        authMW(objectRepository),
+        updateAppMW(objectRepository),
+        renderMW(objectRepository, 'modapp')
     );
 
     /**
@@ -51,9 +59,9 @@ module.exports = function (app) {
      *      (apps admin page)
      */
     app.use('/apps/all',
-        authMW(),
-        getAppListMW(),
-        renderMW()
+        authMW(objectRepository),
+        getAppListMW(objectRepository),
+        renderMW(objectRepository, 'allapps')
     );
 
     /**
@@ -62,8 +70,8 @@ module.exports = function (app) {
      *             (/apps/app/:id)
      */
     app.use('/apps/app/:id/mod/:score',
-        authMW(),
-        updateScoreMW()
+        authMW(objectRepository),
+        updateScoreMW(objectRepository)
     );
 
     /**
@@ -71,26 +79,26 @@ module.exports = function (app) {
      *          ->redirects to the apps admin page (/apps/all)
      */
     app.use('/apps/app/:id/del/',
-        authMW(),
-        deleteScoreMW()
+        authMW(objectRepository),
+        deleteScoreMW(objectRepository)
     );
-
+    
     /**
      * The page of app with id ':id' and it's apps received
      */
     app.use('/apps/app/:id',
-        authMW(),
-        getAppMW(),
-        renderMW()
+        authMW(objectRepository),
+        getAppMW(objectRepository),
+        renderMW(objectRepository, 'app')
     );
 
     /**
      * The page for applications that are currently active
      */
     app.use('/apps',
-        authMW(),
-        getActiveAppListMW(),
-        renderMW()
+        authMW(objectRepository),
+        getActiveAppListMW(objectRepository),
+        renderMW(objectRepository,'activeapps')
     );
 
 };

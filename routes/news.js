@@ -1,11 +1,19 @@
+/**
+ * Require all the middlewares
+ */
+var authMW = require('../middlewares/general/auth');
+var renderMW = require('../middlewares/general/render');
+var mainRedirectMW = require('../middlewares/general/mainredirect');
+
+var updateNewsMW = require('../middlewares/news/updatenews');
+var deleteNewsMW = require('../middlewares/news/deletenews');
+var getNewsList = require('../middlewares/news/getnewslist');
+
 module.exports = function (app) {
 
-    var authMW = require('../middlewares/general/auth');
-    var renderMW = require('../middlewares/general/render');
+    var objectRepository = {
 
-    var updateNewsMW = require('../middlewares/news/updatenews');
-    var deleteNewsMW = require('../middlewares/news/deletenews');
-    var getNewsList = require('../middlewares/news/getnewslist');
+    };
 
     /**
      * The page for new news
@@ -14,9 +22,9 @@ module.exports = function (app) {
      *                  -> than redirects to the news' page (/news)
      */
     app.use('/news/add',
-        authMW(),
-        updateNewsMW(),
-        renderMW()
+        authMW(objectRepository),
+        updateNewsMW(objectRepository),
+        renderMW(objectRepository, 'addnews')
     );
 
     /**
@@ -24,8 +32,8 @@ module.exports = function (app) {
      *      -> than redirects to news' page (/news)
      */
     app.use('/news/del/:id',
-        authMW(),
-        deleteNewsMW()
+        authMW(objectRepository),
+        deleteNewsMW(objectRepository)
     );
 
     /**
@@ -33,8 +41,8 @@ module.exports = function (app) {
      *      -> than redirects to news' page (/news)
      */
     app.use('/news/mod/:id',
-        authMW(),
-        updateNewsMW()
+        authMW(objectRepository),
+        updateNewsMW(objectRepository)
     );
 
     /**
@@ -43,9 +51,16 @@ module.exports = function (app) {
      *      admins can delete and modify the news here
      */
     app.use('/news',
-        authMW(),
-        getNewsList(),
-        renderMW()
+        authMW(objectRepository),
+        getNewsList(objectRepository),
+        renderMW(objectRepository,'news')
+    );
+
+    /**
+     *
+     */
+    app.use('/',
+        mainRedirectMW(objectRepository)
     );
 
 };

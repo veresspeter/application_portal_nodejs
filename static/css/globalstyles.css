@@ -39,6 +39,12 @@ header {
     padding-left: 0;
 }
 
+
+.boxshadow{
+    box-shadow: 0 0 10px 3px #888888;
+    z-index: 1;
+}
+
 .bd-sidebar {
     width: 100%;
     height: 100%;

@@ -8,6 +8,7 @@
   },
   "author": "Veress Péter",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "express-session": "^1.15.6"
   }
 }
