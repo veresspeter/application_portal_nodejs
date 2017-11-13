@@ -1,0 +1,33 @@
+<% var menuitem='admin'; %>
+
+<% include header %>
+
+<h4 class="title">Felhasználók áttekintése</h4>
+<table class="table table-center">
+    <thead>
+    <tr>
+        <th class="table-center">Teljes név</th>
+        <th class="table-center">Jogosultság</th>
+        <th class="table-center">Lehetőségek</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% users.forEach( function(user){ %>
+    <tr>
+        <td><%= user.name %></td>
+        <td><%= user.perm %></td>
+        <td>
+            <% if ( user.perm == "user" ) { %>
+            <a class="btn btn-outline-danger" href="/judg/admin/del/<%= user.id %>" >Lefokozás</a>
+            <% } else { %>
+            <a class="btn btn-outline-success" href="/judg/admin/add/<%= user.id %>" >Kinevezés</a>
+            <% } %>
+        </td>
+    </tr>
+    <% }) %>
+
+    </tbody>
+</table>
+
+<% include footer %>

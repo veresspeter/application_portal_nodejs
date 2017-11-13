@@ -12,7 +12,6 @@ var getNewsList = require('../middlewares/news/getnewslist');
 module.exports = function (app) {
 
     var objectRepository = {
-
     };
 
     /**
@@ -41,8 +40,19 @@ module.exports = function (app) {
      *      -> than redirects to news' page (/news)
      */
     app.use('/news/mod/:id',
+        function(req,res,next){
+            var news={
+                    id: 1,
+                    title: '1 - A hír címe',
+                    duedate: '2016.05.06',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+                };
+            res.tpl.news = news;
+            next();
+        },
         authMW(objectRepository),
-        updateNewsMW(objectRepository)
+        updateNewsMW(objectRepository),
+        renderMW(objectRepository,'addnews')
     );
 
     /**
@@ -51,6 +61,30 @@ module.exports = function (app) {
      *      admins can delete and modify the news here
      */
     app.use('/news',
+        function(req,res,next){
+          var news= [
+              {
+                  id: 1,
+                  title: '1 - A hír címe',
+                  duedate: '2016.05.06',
+                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              },
+              {
+                  id: 2,
+                  title: '2 - A hír címe',
+                  duedate: '2016.05.06',
+                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              },
+              {
+                  id: 3,
+                  title: '3 - A hír címe',
+                  duedate: '2016.05.06',
+                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+              }
+          ];
+          res.tpl.news = news;
+          next();
+        },
         authMW(objectRepository),
         getNewsList(objectRepository),
         renderMW(objectRepository,'news')

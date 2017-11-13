@@ -11,9 +11,7 @@ var filterAdminsMW = require('../middlewares/users/admin/filteradmins');
 
 module.exports = function (app) {
 
-    var objectRepository = {
-
-    };
+    var objectRepository = {};
 
     /**
      * Updates a user's permission to admin
@@ -35,20 +33,63 @@ module.exports = function (app) {
      *  The users permission page for admins
      */
     app.use('/judg/admin',
+        function (req, res, next) {
+            var users = [{
+                id: 1,
+                name: 'Kiss Béla',
+                perm: 'admin'
+            },{
+                id: 2,
+                name: 'Nagy Béla',
+                perm: 'admin'
+            },{
+                id: 3,
+                name: 'Fekete Béla',
+                perm: 'admin'
+            },{
+                id: 4,
+                name: 'Nagy Gizi',
+                perm: 'user'
+            },{
+                id: 5,
+                name: 'Fehér Béla',
+                perm: 'admin'
+            },{
+
+                id: 6,
+                name: 'Kovács János',
+                perm: 'user'
+            }];
+            res.tpl.users = users;
+            next();
+        },
         authMW(objectRepository),
         getUserListMW(objectRepository),
         getUserListPermissionMW(objectRepository),
-        renderMW(objectRepository,'perms')
+        renderMW(objectRepository, 'admin')
     );
 
     /**
      * The page of the admins of the portal
      */
     app.use('/judg',
+        function (req, res, next) {
+            var judges = [{
+                name: 'Kiss Béla'
+            },{
+                name: 'Nagy Béla'
+            },{
+                name: 'Fekete Béla'
+            },{
+                name: 'Fehér Béla'
+            }];
+            res.tpl.judges = judges;
+            next();
+        },
         authMW(objectRepository),
         getUserListPermissionMW(objectRepository),
         filterAdminsMW(objectRepository),
-        renderMW(objectRepository,'judges')
+        renderMW(objectRepository, 'judges')
     );
 
 };

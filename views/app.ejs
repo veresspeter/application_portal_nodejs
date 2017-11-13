@@ -1,0 +1,44 @@
+<% var menuitem=''; %>
+
+<% include header %>
+
+<h4>Példa pályázat</h4>
+<div style="height: 20px"></div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Teljes név</th>
+        <th>Leadott pályázat</th>
+        <th>Eredmény</th>
+        <th>Bíráló</th>
+        <th>Lehetőségek</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% apps.forEach( function(app){ %>
+    <tr>
+        <td><%= app.id %></td>
+        <td><%= app.name %></td>
+        <td><a href="" ><%= app.filename %></a></td>
+        <td><%= app.score %></td>
+        <td><%= app.judge %></td>
+
+
+        <td>
+        <% if ( app.score =='' ) { %>
+            <button type="button" class="btn btn-outline-primary">Pontozás</button>
+        <% } else { %>
+            <button type="button" class="btn btn-outline-warning">Módosít</button>
+            <button type="button" class="btn btn-outline-danger">Töröl</button>
+        <% } %>
+        </td>
+
+    </tr>
+    <% }) %>
+
+    </tbody>
+</table>
+
+<% include footer %>

@@ -1,0 +1,36 @@
+<% var menuitem=''; %>
+
+<% include header %>
+
+<h4 class="title">Leadott pályázataim</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Pályázat neve</th>
+        <th>Beküldött dokumentum</th>
+        <th>Határidő</th>
+        <th>Eredmény</th>
+        <th>Lehetőségek</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% apps.forEach( function(app){ %>
+    <tr>
+        <td><%= app.title %></td>
+        <td><a href="" ><%= app.filename %></a></td>
+        <td><%= app.duedate %></td>
+        <td><%= app.score %></td>
+        <td>
+            <% if ( app.score == '' ) { %>
+            <button type="button" class="btn btn-outline-warning">Módosít</button>
+            <button type="button" class="btn btn-outline-danger">Töröl</button>
+            <% } %>
+        </td>
+    </tr>
+    <% }) %>
+
+    </tbody>
+</table>
+
+<% include footer %>

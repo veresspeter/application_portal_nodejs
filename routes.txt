@@ -1,4 +1,4 @@
-req type      route                      page / site function     all / user / only admin
+﻿req type      route                      page / site function     all / user / only admin
 
 GET           /                           ->news                  all
 

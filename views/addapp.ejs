@@ -1,0 +1,37 @@
+<% if ( typeof(app) == 'undefined' ){ %>
+<% var menuitem = 'addapp'; %>
+<% var app = {
+    id: '',
+    title: '',
+    duedate: '',
+    filename: '',
+    description: ''
+}; %>
+<% } else { %>
+<% var menuitem = 'modapp'; %>
+<% } %>
+
+<% include header %>
+
+<div class="col-sm-6 form-container">
+    <h4 class="title">Pályázat <%= (menuitem == 'addapp') ? 'létrehozása' : 'módosítása' %></h4>
+    <form method="post" action="<%= (menuitem == 'addapp') ? '/apps/add' : '/apps/mod/'+app.id %>" >
+        <div class="form-group">
+            <label for="applicationName" class="col-5">Pályázat neve</label>
+            <input type="text" class="form-control col-7" id="applicationName" aria-describedby="userNameHelp" value="<%= app.title %>">
+        </div>
+        <div class="form-group">
+            <label for="deadline" class="col-5">Beküldési Határidő</label>
+            <input type="date" class="form-control col-7" id="deadline" aria-describedby="fullNameHelp"  value="<%= app.duedate %>">
+        </div>
+        <div class="form-group">
+            <textarea type="text" class="form-control" id="details" rows="10" aria-describedby="passWordHelp" placeholder="Leírás"><%= app.description %></textarea>
+        </div>
+
+        <div style="height: 15px" ></div>
+
+        <button type="submit" class="btn btn-block btn-outline-primary">Közzététel</button>
+    </form>
+</div>
+
+<% include footer %>

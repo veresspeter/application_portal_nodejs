@@ -1,0 +1,56 @@
+<% var menuitem=''; %>
+
+<% include header %>
+
+<div class="col-sm-6 form-container">
+    <h4 class="title">Adataim</h4>
+    <form method="post" action="/user/<%= user.id %>/mod" >
+        <div class="form-group">
+            <label for="userName" class="col-5">Felhasználónév</label>
+            <input type="text" class="form-control col-7" id="userName" aria-describedby="userNameHelp" value="<%= user.username %>">
+        </div>
+        <div class="form-group">
+            <label for="fullName" class="col-5">Teljes név</label>
+            <input type="text" class="form-control col-7" id="fullName" aria-describedby="fullNameHelp" value="<%= user.name %>">
+        </div>
+
+
+        <div style="height: 30px" ></div>
+
+        <div class="form-group">
+            <label for="birthDate" class="col-5">Születési idő</label>
+            <input type="date" class="form-control col-7" id="birthDate" aria-describedby="userNameHelp" value="<%= user.birthdate %>">
+        </div>
+        <div class="form-group">
+            <label for="birthPlace" class="col-5">Születési hely</label>
+            <input type="text" class="form-control col-7" id="birthPlace" aria-describedby="fullNameHelp" value="<%= user.birthplace %>">
+        </div>
+        <div class="form-group">
+            <label for="motherName" class="col-5">Anyja neve</label>
+            <input type="text" class="form-control col-7" id="motherName" aria-describedby="passWordHelp" value="<%= user.mothername %>">
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-5">Állandó lakcim</label>
+            <input type="text" class="form-control col-7" id="address" aria-describedby="passWordHelp" value="<%= user.address %>">
+        </div>
+
+
+        <div style="height: 30px" ></div>
+
+
+        <div class="form-group">
+            <label for="email" class="col-5">E-mail cím</label>
+            <input type="email" class="form-control col-7" id="email" aria-describedby="fullNameHelp" value="<%= user.email %>">
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-5">Telefonszám</label>
+            <input type="tel" class="form-control col-7" id="phone" aria-describedby="passWordHelp" value="<%= user.phone %>">
+        </div>
+
+        <div style="height: 30px" ></div>
+
+        <button type="submit" class="btn btn-block btn-outline-primary">Módosítás</button>
+    </form>
+</div>
+
+<% include footer %>

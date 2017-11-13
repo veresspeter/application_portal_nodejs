@@ -1,20 +1,16 @@
 var express = require('express');
 var app = express();
 
-//app.use(express.static('static'));
-
 var session = require('express-session');
 var bodyParser = require('body-parser');
 
-app.set('view engine', 'ejs');
-
-app.use(bodyParser.urlencoded());
-app.use(bodyParser.json());
-
 /**
- * Access to the static pages
+ * Access to the static pages and public files
  */
 app.use('/static', express.static('static'));
+app.use(express.static('public'));
+
+app.set('view engine', 'ejs');
 
 /**
  * Session
@@ -30,12 +26,17 @@ app.use(session({
 }));
 */
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+
 /**
  * Create .error and .tpl on res
  */
 app.use(function (req, res, next) {
-    res.error = [];
-    res.tpl = {};
+    res.tpl = [];
+    res.tpl.error = {};
     return next();
 });
 
@@ -44,8 +45,8 @@ app.use(function (req, res, next) {
  */
 require('./routes/apps')(app);
 require('./routes/judges')(app);
-require('./routes/news')(app);
 require('./routes/user')(app);
+require('./routes/news')(app);
 
 /**
  * Error handler
