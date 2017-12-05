@@ -1,0 +1,25 @@
+<% var menuitem='news'; %>
+
+<% include pageHeader %>
+
+<% news.forEach( function(news){  %>
+<div class="news">
+    <div class="news-header">
+        <h4>
+            <span><%= news.title %></span>
+            <span class="date"><%= func.moment(news.realised).format('YYYY-MM-DD').toString() %></span>
+        </h4>
+    </div>
+    <div class="news-body">
+        <p><%= news.description %></p>
+    </div>
+    <% if( user.isadmin ) { %>
+    <div class="nav-item news-footer">
+        <a class="nav-link" href="/news/<%= news.id %>/mod">Szerkeszt</a>
+        <a class="nav-link" href="/news/<%= news.id %>/del">Töröl</a>
+    </div>
+    <% } %>
+</div>
+<% })  %>
+
+<% include pageFooter %>

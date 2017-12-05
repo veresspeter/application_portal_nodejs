@@ -1,0 +1,49 @@
+<h4>Pályázati portál</h4>
+<div class="dropdown">
+
+    <% if ( !loggedin ) { %>
+
+    <button class="btn btn-outline-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Bejelentkezés
+    </button>
+    <div class="dropdown-menu dropdown-logout" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item disabled form-inline">
+            <form method="post" action="/login" >
+                <p></p>
+                <input class="form-control" type="text" placeholder="Felhasználónév" aria-label="username" name="username" required>
+                <p></p>
+                <input class="form-control" type="password" placeholder="Jelszó" aria-label="password" name="password" required>
+                <p></p>
+                <button class="btn btn-primary" type="submit">Bejelentkezés</button>
+                <p></p>
+            </form>
+            <p>
+                <a href="/reminder">Elfelejtett jelszó</a>
+                <br>
+                <a href="/register">Regisztráció</a>
+            </p>
+        </div>
+    </div>
+
+    <% } else { %>
+
+    <button class="btn btn-outline-light btn-block dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= user.name %>
+    </button>
+    <div class="dropdown-menu dropdown-login" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item disabled form-inline">
+            <a href="/usr/mod/data"><h6>Adataim</h6></a>
+            <p></p>
+            <a href="/usr/app"><h6>Pályázataim</h6></a>
+            <p></p>
+            <a href="/usr/mod/psw"><h6>Jelszó módosítás</h6></a>
+            <p></p>
+            <a href="/logout"><h6>Kijelentkezés</h6></a>
+        </div>
+    </div>
+
+    <% } %>
+
+</div>

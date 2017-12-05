@@ -5,7 +5,11 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        return next();
+
+        res.tpl.news.remove(function (err) {
+            console.log(err);
+            return next();
+        })
     };
 
 };

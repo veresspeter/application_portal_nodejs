@@ -8,8 +8,16 @@ header {
     color: white;
 }
 
-.dropdown-menu{
-    margin-left: -100px;
+.dropdown-logout{
+    position: absolute;
+    top: 40px;
+    left: -108px;
+}
+
+.dropdown-login{
+    position: absolute;
+    top: 40px;
+    left: -48px;
 }
 
 .dropdown-item a{

@@ -6,6 +6,7 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
+        req.session.userid = undefined;
         return next();
     };
 

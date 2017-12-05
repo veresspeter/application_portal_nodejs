@@ -1,8 +1,10 @@
 var express = require('express');
 var app = express();
 
+const fileUpload = require('express-fileupload');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var moment = require('moment');
 
 /**
  * Access to the static pages and public files
@@ -10,21 +12,21 @@ var bodyParser = require('body-parser');
 app.use('/static', express.static('static'));
 app.use(express.static('public'));
 
+app.use(fileUpload());
 app.set('view engine', 'ejs');
 
 /**
  * Session
  */
-/*
 app.use(session({
-    secret: '',
+    secret: 'random titok',
     cookie: {
         maxage: 60000
     },
     resave: true,
     saveUninitialized: false
 }));
-*/
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -35,18 +37,26 @@ app.use(bodyParser.urlencoded({
  * Create .error and .tpl on res
  */
 app.use(function (req, res, next) {
-    res.tpl = [];
-    res.tpl.error = {};
+    res.tpl = {};
+    res.tpl.error = [];
+    res.tpl.func= {
+        moment: moment
+    };
+    res.tpl.user= {
+        isadmin: false
+    };
     return next();
 });
 
 /**
  * Include all route
  */
-require('./routes/apps')(app);
-require('./routes/judges')(app);
-require('./routes/user')(app);
+require('./routes/app')(app);
+require('./routes/judge')(app);
 require('./routes/news')(app);
+require('./routes/tender')(app);
+require('./routes/user')(app);
+require('./routes/general')(app);
 
 /**
  * Error handler

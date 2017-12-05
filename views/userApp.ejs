@@ -1,0 +1,40 @@
+<% var menuitem=''; %>
+
+<% include pageHeader %>
+
+<h4 class="title">Leadott pályázataim</h4>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Pályázat neve</th>
+        <th>Beküldött dokumentum</th>
+        <th>Határidő</th>
+        <th>Eredmény</th>
+        <th>Lehetőségek</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% apps.forEach( function(app){ %>
+    <tr>
+        <td><%= app.tender.title %></td>
+        <td><a href="/uploads/<%= app.filename %>" download ><%= app.filename %></a></td>
+        <td><%= func.moment(app.tender.duedate).format('YYYY-MM-DD') %></td>
+        <td><%= app.score %></td>
+        <td>
+            <% if ( app.tender.duedate > Date.now() ) { %>
+            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#Modal<%= app.tender._id %>">Módosít</button>
+            <% } %>
+            <% if ( app.score === undefined ) { %>
+            <button type="button" class="btn btn-outline-danger" href="/app/<%= app.id %>/del" >Töröl</button>
+            <% } %>
+        </td>
+    </tr>
+    <% }) %>
+
+    </tbody>
+</table>
+
+<% include pageModal %>
+
+<% include pageFooter %>

@@ -1,0 +1,31 @@
+<nav class="bd-sidebar">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link <% if ( menuitem == 'news' ) { %> active <% } %> " href="/news">Hírek</a>
+        </li>
+        <% if( user.isadmin ) { %>
+        <li class="nav-item subitem">
+            <a class="nav-link <% if ( menuitem == 'newsAdd' ) { %> active <% } %> " href="/news/new/mod">Publikálás</a>
+        </li>
+        <% } %>
+        <li class="nav-item">
+            <a class="nav-link <% if ( menuitem == 'tenderActual' ) { %> active <% } %> " href="/tender">Pályázatok</a>
+        </li>
+        <% if( user.isadmin ) { %>
+        <li class="nav-item subitem">
+            <a class="nav-link <% if ( menuitem == 'tenderAdd' ) { %> active <% } %> " href="/tender/new/mod">Kiírás</a>
+        </li>
+        <li class="nav-item subitem">
+            <a class="nav-link <% if ( menuitem == 'tenderAll' ) { %> active <% } %> " href="/tender/all">Bírálás</a>
+        </li>
+        <% } %>
+        <li class="nav-item">
+            <a class="nav-link <% if ( menuitem == 'judges' ) { %> active <% } %> " href="/judg">Bírák</a>
+        </li>
+        <% if( user.isadmin ) { %>
+        <li class="nav-item subitem">
+            <a class="nav-link <% if ( menuitem == 'admin' ) { %> active <% } %> " href="/judg/admin"s>Jogkörök</a>
+            <% } %>
+        </li>
+    </ul>
+</nav>

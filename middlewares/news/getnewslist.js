@@ -4,7 +4,12 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        return next();
+
+        objectrepository.newsModel.find().exec(function (err,result) {
+            res.tpl.news = result;
+            return next();
+        })
+
     };
 
 };

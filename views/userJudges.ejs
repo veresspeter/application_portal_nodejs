@@ -1,0 +1,15 @@
+<% var menuitem='judges'; %>
+
+<% include pageHeader %>
+
+<div class="col-sm-6 form-container">
+    <h4 class="title">Pályázatbírák</h4>
+    <div style="height: 20px"></div>
+    <div class="name">
+        <% admins.forEach( function(admin){ %>
+        <h5><%= admin.name %></h5>
+        <% }) %>
+    </div>
+</div>
+
+<% include pageFooter %>

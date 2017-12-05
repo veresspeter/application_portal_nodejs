@@ -5,7 +5,11 @@
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
-        return next();
+        objectrepository.userModel.find(function (err, result) {
+            console.log(err);
+            res.tpl.users = result;
+            return next();
+        })
     };
 
 };

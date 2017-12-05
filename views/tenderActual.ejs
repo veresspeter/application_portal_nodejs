@@ -1,0 +1,50 @@
+<% var menuitem='tenderActual'; %>
+
+<% include pageHeader %>
+
+<h4 class="title">Aktuális pályázatok</h4>
+
+<div class="applications" id="accordion" role="tablist">
+
+    <% tenders.forEach( function(tender){  %>
+
+    <div class="card">
+        <div class="card-header" role="tab" id="heading<%= tender.id %>">
+            <h5 class="mb-0">
+                <a data-toggle="collapse" href="#collapse<%= tender.id %>" aria-expanded="true"
+                   aria-controls="collapse<%= tender.id %>">
+                    <h5 class="card-title"><%= tender.title %></h5>
+                    <% if( user.isadmin ) { %>
+                    <h5 class="card-title edit">
+                        <a class="card-link" href="/tender/<%= tender.id %>/del">Törlés</a>
+                        <a class="card-link" href="/tender/<%= tender.id %>/mod">Szerkesztés</a>
+                    </h5>
+                    <% } %>
+                </a>
+            </h5>
+        </div>
+
+        <div id="collapse<%= tender.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= tender.id %>"
+             data-parent="#accordion">
+            <div class="card-body">
+                <p><%= tender.description %></p>
+                <div class="card-body-footer">
+                    <% if( loggedin ) { %>
+                    <div class="right-side">
+                        <a class="nav-link upload" href="" data-toggle="modal" data-target="#Modal<%= tender._id %>">Feltöltés</a>
+                        <a class="nav-link download" href="/uploads/<%= tender.myapp %>" download ><%= tender.myapp %></a>
+                    </div>
+                    <% } %>
+                    <h6>Határidő: <%= func.moment(tender.duedate).format('YYYY-MM-DD').toString() %></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% })  %>
+
+</div>
+
+<% include pageModal %>
+
+<% include pageFooter %>

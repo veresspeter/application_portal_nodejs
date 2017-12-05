@@ -1,0 +1,26 @@
+<% if ( news.isnew ){ %>
+    <% var menuitem = 'newsAdd'; %>
+<% } else { %>
+    <% var menuitem=''; %>
+<% } %>
+
+<% include pageHeader %>
+
+<div class="col-sm-6 form-container">
+    <h4 class="title">Hír <%= ( news.isnew ) ? 'létrehozása' : 'módosítása' %></h4>
+    <form method="post" action="">
+        <div class="form-group">
+            <label for="applicationName" class="col-5">Hír címe</label>
+            <input type="text" class="form-control col-7" id="applicationName" name="title" aria-describedby="userNameHelp" placeholder="Cím" value="<%= news.title %>" required >
+        </div>
+        <div class="form-group">
+            <textarea type="text" class="form-control" id="details" name="description" aria-describedby="passWordHelp" rows="8"  placeholder="Leírás" required><%= news.description %></textarea>
+        </div>
+
+        <div style="height: 15px"></div>
+
+        <button type="submit" class="btn btn-block btn-outline-primary">Közzététel</button>
+    </form>
+</div>
+
+<% include pageFooter %>

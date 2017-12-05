@@ -1,0 +1,69 @@
+<% var menuitem=''; %>
+
+<% include pageHeader %>
+
+
+    <div class="col-sm-6 form-container">
+        <h4 class="title">Regisztráció</h4>
+        <form method="post" action="">
+            <div class="form-group">
+                <label for="userName" class="col-5">Felhasználónév</label>
+                <input type="text" class="form-control col-7" id="userName" aria-describedby="userNameHelp" name="username" required value="<%= user.username %>">
+            </div>
+            <div class="form-group">
+                <label for="fullName" class="col-5">Teljes név</label>
+                <input type="text" class="form-control col-7" id="fullName" aria-describedby="fullNameHelp" name="name" required value="<%= user.name %>" >
+            </div>
+            <div class="form-group">
+                <label for="passWord" class="col-5">Jelszó</label>
+                <input type="password" class="form-control col-7" id="passWord" aria-describedby="passWordHelp" name="password" required value="" >
+            </div>
+            <div class="form-group">
+                <label for="passWordAgain" class="col-5">Jelszó ismét</label>
+                <input type="password" class="form-control col-7" id="passWordAgain" aria-describedby="passWordHelp" name="repassword" required value="" >
+            </div>
+
+
+            <div style="height: 30px" ></div>
+
+            <div class="form-group">
+                <label for="birthDate" class="col-5">Születési idő</label>
+                <input type="date" class="form-control col-7" id="birthDate" aria-describedby="userNameHelp" name="birthdate" required value="<%= user.birthdate %>">
+            </div>
+            <div class="form-group">
+                <label for="birthPlace" class="col-5">Születési hely</label>
+                <input type="text" class="form-control col-7" id="birthPlace" aria-describedby="fullNameHelp" name="birthplace" required value="<%= user.birthplace %>">
+            </div>
+            <div class="form-group">
+                <label for="motherName" class="col-5">Anyja neve</label>
+                <input type="text" class="form-control col-7" id="motherName" aria-describedby="passWordHelp" name="mothername" required value="<%= user.mothername %>">
+            </div>
+            <div class="form-group">
+                <label for="address" class="col-5">Állandó lakcim</label>
+                <input type="text" class="form-control col-7" id="address" aria-describedby="passWordHelp" name="address" required value="<%= user.address %>" >
+            </div>
+
+
+            <div style="height: 30px" ></div>
+
+
+            <div class="form-group">
+                <label for="email" class="col-5">E-mail cím</label>
+                <input type="email" class="form-control col-7" id="email" aria-describedby="fullNameHelp" name="email" required value="<%= user.email %>" >
+            </div>
+            <div class="form-group">
+                <label for="phone" class="col-5">Telefonszám</label>
+                <input type="tel" class="form-control col-7" id="phone" aria-describedby="passWordHelp" name="phone" value="<%= user.phone %>" >
+            </div>
+
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" id="terms" required>
+                    A felhasználási feltételekkel tisztában vagyok és elfogadom azokat.
+                </label>
+            </div>
+            <button type="submit" class="btn btn-block btn-outline-primary" >Regisztráció</button>
+        </form>
+    </div>
+
+<% include pageFooter %>

@@ -3,11 +3,12 @@ var db = require('mongodb');
 module.exports = function (objectrepository) {
 
     return function (req, res, next) {
+
         objectrepository.appModel.aggregate([
             {
                 $match:
                     {
-                        _owner: new db.ObjectId(req.session.userid)
+                        _tender: db.ObjectId(req.params.id)
                     }
             },
             {
@@ -28,16 +29,20 @@ module.exports = function (objectrepository) {
                         as: 'owner'
                     }
             },
+            {
+                $lookup:
+                    {
+                        from: 'users',
+                        localField: '_judge',
+                        foreignField: '_id',
+                        as: 'judge'
+                    }
+            },
             {   $unwind: "$tender"  },
             {   $unwind: "$owner"  }
         ]).exec(function (err, result) {
             console.log(err);
-            res.tpl.tenders = [];
-            result.forEach( function (app) {
-                res.tpl.tenders.add(app.tender);
-            });
             res.tpl.apps = result;
-            console.log(result);
             return next();
         });
     };
